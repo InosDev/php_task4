@@ -16,7 +16,7 @@ $operations = [
 
 $items = [];
 
-function OP_ADD(): string 
+function addProduct(): string 
 {
     echo "Введение название товара для добавления в список: \n> ";
     $itemName = trim(fgets(STDIN));
@@ -24,7 +24,7 @@ function OP_ADD(): string
 
 }
 
-function OP_DELETE(array $items)
+function deleteProduct(array &$items)
 {
     // Проверить, есть ли товары в списке? Если нет, то сказать об этом и попросить ввести другую операцию
     echo 'Текущий список покупок:' . PHP_EOL;
@@ -41,7 +41,7 @@ function OP_DELETE(array $items)
         }
 }
 
-function OP_PRINT(array $items)
+function printProductList(array $items)
 {
     echo 'Ваш список покупок: ' . PHP_EOL;
     echo implode(PHP_EOL, $items) . PHP_EOL;
@@ -87,15 +87,15 @@ do {
     switch ($operationNumber) {
 
         case OPERATION_ADD:
-            $items[]  = OP_ADD();
+            $items[]  = addProduct();
             break;
 
         case OPERATION_DELETE:
-            OP_DELETE($items);
+            deleteProduct($items);
             break;
 
         case OPERATION_PRINT:
-            OP_PRINT($items);
+            printProductList($items);
             break;
     }
 
